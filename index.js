@@ -1,3 +1,5 @@
+// Source code : https://github.com/sindresorhus/p-debounce/blob/master/index.js
+
 function pDebounce(fn, wait, options = {}) {
 
     if(!Number.isFinite(wait))
