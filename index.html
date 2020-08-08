@@ -80,7 +80,7 @@
         <script>
             new Vue({
                 el : '#app',
-                data :{
+                data : {
                     url: 'https://www.youtube.com/watch?v=klnvttPfOUM',
                     kataKunci : '',
                     daftarHasil :[],
@@ -94,9 +94,8 @@
                     }
                 },
                 watch:{
-                    kataKunci: pDebounce(async function tanganiKataKunci(kataKunci){
-                        if(kataKunci && kataKunci.length >= 3)
-                        {
+                    kataKunci: pDebounce(async function tanganiKataKunci(kataKunci) {
+                        if(kataKunci && kataKunci.length >= 3) {
                             await this.cari(kataKunci, this.url)
                         }else{
                             this.bersihkanHasil()
@@ -104,8 +103,7 @@
                     }, 250)
                 },
                 methods:{
-                    async cari(kataKunci, url, paginasi)
-                    {
+                    async cari(kataKunci, url, paginasi) {
                         try {
                             const respon = await fetch(
                                 paginasi
@@ -124,21 +122,17 @@
                             this.paginasi.page = respon.page
                         } catch(error){}
                     },
-                    async navigasi(type)
-                    {
-                        if(!this.paginasi[type])
-                        {
+                    async navigasi(type) {
+                        if(!this.paginasi[type]) {
                             return
                         }
                         await this.cari(this.kataKunci, this.url, this.paginasi[type])
                     },
-                    bersihkan() 
-                    {
+                    bersihkan() {
                         this.kataKunci = ''
                         this.bersihkanHasil()
                     },
-                    bersihkanHasil()
-                    {
+                    bersihkanHasil() {
                         this.daftarHasil = []
                         this.paginasi = {
                             first: null,

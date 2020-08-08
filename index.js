@@ -21,16 +21,14 @@ function pDebounce(fn, wait, options = {}) {
                 timer = null
                 const result = options.leading ? leadingValue : fn.apply(this, arguments_)
 
-                for(resolve of resolveList)
-                {
+                for(resolve of resolveList) {
                     resolve(result)
                 }
 
                 resolveList = []
             }, wait)
 
-            if(runImmediately)
-            {
+            if(runImmediately) {
                 leadingValue = fn.apply(this, arguments_)
                 resolve(leadingValue)
             }else{
